@@ -2,4 +2,4 @@
 
 Text to speech in Hebrew
 
-Based on [Mishkal](https://github.com/thewh1tegle/mishkal)
+Based on [Mishkal](https://github.com/thewh1teagle/mishkal)
