@@ -1,4 +1,4 @@
-# Mishel
+# mishkal-tts
 
 Text to speech in Hebrew
 
