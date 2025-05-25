@@ -1,5 +1,5 @@
 from piper_onnx import Piper
-from mishkal import phonemize
+from kolani import phonemize
 from phonikud_onnx import Phonikud
 
 class StyleTTS2:

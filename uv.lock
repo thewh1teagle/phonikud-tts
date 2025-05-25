@@ -297,7 +297,7 @@ name = "mishel"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "mishkal-hebrew" },
+    { name = "kolani-hebrew" },
     { name = "phonikud-onnx" },
     { name = "piper-onnx" },
     { name = "sounddevice" },
@@ -306,7 +306,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "mishkal-hebrew", git = "https://github.com/thewh1teagle/mishkal" },
+    { name = "kolani-hebrew", git = "https://github.com/thewh1teagle/kolani" },
     { name = "phonikud-onnx", specifier = ">=1.0.1" },
     { name = "piper-onnx", specifier = ">=1.0.5" },
     { name = "sounddevice", specifier = ">=0.5.2" },
@@ -314,9 +314,9 @@ requires-dist = [
 ]
 
 [[package]]
-name = "mishkal-hebrew"
+name = "kolani-hebrew"
 version = "0.3.7"
-source = { git = "https://github.com/thewh1teagle/mishkal#4a211e0f9341a45c0203011995fb12a2bea9fa9d" }
+source = { git = "https://github.com/thewh1teagle/kolani#4a211e0f9341a45c0203011995fb12a2bea9fa9d" }
 dependencies = [
     { name = "colorlog" },
     { name = "num2words" },
