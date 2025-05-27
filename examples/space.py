@@ -24,8 +24,11 @@ css = """
     background: var(--input-background-fill);
     padding: 5px;
     min-height: 50px;
-    font-size: 28px;  # changed from 20px to 28px
 }
+.phonemes textarea {
+    font-size: 22px !important;
+}
+
 """
 
 def full_pipeline(mode, text, phonemes_in, phonikud, piper):
@@ -52,7 +55,7 @@ def demo():
 
         mode = gr.Radio(["From Text", "From Phonemes"], value="From Text", label="Input Mode")
         text_input = gr.Textbox(label="Hebrew Text", value=DEFAULT_TEXT, elem_classes=["input"], rtl=True)
-        phoneme_input = gr.Textbox(label="Phonemes", lines=2)
+        phoneme_input = gr.Textbox(label="Phonemes", lines=2, elem_classes=["phonemes"])
         with_diacritics = gr.Markdown(label="Text with Diacritics", elem_classes=["phonemes"])
         audio_output = gr.Audio(label="Audio Output", autoplay=True)
 
