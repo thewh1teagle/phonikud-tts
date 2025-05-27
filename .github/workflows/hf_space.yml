@@ -29,6 +29,7 @@ jobs:
           echo "gradio>=5.25.2" > requirements.txt            
           echo "piper-onnx" >> requirements.txt
           echo "phonikud-onnx" >> requirements.txt
+          echo "kolani" >> requirements.txt
           # Kolani deps
           # Phonikud deps
           # Copy files
