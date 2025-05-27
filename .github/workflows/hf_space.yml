@@ -42,6 +42,7 @@ jobs:
           # Git
           git lfs install
           rm -rf .git
+          rm -rf .gitignore
 
           git init
           git lfs track "*.onnx"
