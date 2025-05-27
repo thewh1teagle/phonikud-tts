@@ -20,4 +20,4 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv.sources]
-kolani-hebrew = { git = "https://github.com/thewh1teagle/kolani" }
+kolani = { git = "https://github.com/thewh1teagle/kolani" }
