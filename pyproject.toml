@@ -1,5 +1,5 @@
 [project]
-name = "mishel"
+name = "kolani-tts"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -8,7 +8,7 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "kolani-hebrew",
+    "kolani",
     "phonikud-onnx>=1.0.1",
     "piper-onnx>=1.0.5",
     "sounddevice>=0.5.2",

@@ -1,0 +1,52 @@
+name: Push to Hugging Face hub
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+        with:
+          fetch-depth: 0
+          lfs: true
+          # ref: 61633533fbf1da092f89202d530e7834e1bab8e5
+      - name: Prepare and push to HF
+        run: |
+
+          # Prepare space
+          mkdir $SPACE_NAME
+          cd $SPACE_NAME
+          cp ../examples/space.py app.py
+
+          # Editor deps
+          echo "gradio>=5.25.2" > requirements.txt            
+          echo "piper-onnx" >> requirements.txt
+          echo "phonikud-onnx" >> requirements.txt
+          # Kolani deps
+          # Phonikud deps
+          # Copy files
+          cp -rf ../src/kolani_tts .
+
+          # Git
+          git init
+          git branch -M main
+          git config --global user.email "thewh1teagle"
+          git config --global user.name "thewh1teagle"
+          git remote add origin https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME
+          git lfs install
+          wget --progress=bar:force https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx
+          wget https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx
+          wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx.json
+          git lfs track "*.onnx"
+          git add .
+          git commit -m "latest"
+          git push --force origin main
+
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_USERNAME: "thewh1teagle"
+          SPACE_NAME: "kolani-tts"
