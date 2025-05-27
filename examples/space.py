@@ -24,7 +24,7 @@ css = """
     background: var(--input-background-fill);
     padding: 5px;
     min-height: 50px;
-    font-size: 20px;
+    font-size: 28px;  # changed from 20px to 28px
 }
 """
 
