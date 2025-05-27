@@ -40,8 +40,11 @@ jobs:
           # cp -rf ../src/kolani_tts .
 
           # Git
+          git lfs install
           rm -rf .git
+
           git init
+          git lfs track "*.onnx"
           git branch -M main
           git config --global user.email "thewh1teagle"
           git config --global user.name "thewh1teagle"
@@ -51,8 +54,6 @@ jobs:
           wget --progress=bar:force https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx -O en_US-ryan-medium.onnx
           wget --progress=bar:force https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx.json -O en_US-ryan-medium.onnx.json
 
-          git lfs install
-          git lfs track "*.onnx"
           git add .
           git commit -m "latest"
           git push --force origin main
