@@ -42,6 +42,7 @@ def full_pipeline(mode, text, phonemes_in, phonikud, piper):
     return f"<div dir='rtl' style='font-size: 22px;'>{with_diacritics}</div>", phonemes, tmpfile.name
 
 def demo():
+    DEFAULT_TEXT = "שלום עולם! מה קורה? תגיד לי, אתה מדבר עברית?"
     phonikud = Phonikud('phonikud-1.0.int8.onnx')
     piper = Piper('en_US-ryan-medium.onnx', 'en_US-ryan-medium.onnx.json')
 
@@ -50,7 +51,7 @@ def demo():
         gr.Markdown("### Hebrew TTS with Kolani G2P", elem_id="title")
 
         mode = gr.Radio(["From Text", "From Phonemes"], value="From Text", label="Input Mode")
-        text_input = gr.Textbox(label="Hebrew Text", value="שלום עולם! מה קורה?", elem_classes=["input"], rtl=True)
+        text_input = gr.Textbox(label="Hebrew Text", value=DEFAULT_TEXT, elem_classes=["input"], rtl=True)
         phoneme_input = gr.Textbox(label="Phonemes", lines=2)
         with_diacritics = gr.Markdown(label="Text with Diacritics", elem_classes=["phonemes"])
         audio_output = gr.Audio(label="Audio Output", autoplay=True)
