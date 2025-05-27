@@ -24,10 +24,11 @@ jobs:
         run: |
 
           # Prepare space
-          mkdir $SPACE_NAME
-          cd $SPACE_NAME
-          cp ../.github/workflows/hf_readme.md README.md
-          cp ../examples/space.py app.py
+          # mkdir $SPACE_NAME
+          # cd $SPACE_NAME
+          cd ..
+          cp .github/workflows/hf_readme.md README.md
+          cp examples/space.py app.py
 
           # Editor deps
           uv export --no-hashes > requirements.txt
@@ -35,9 +36,10 @@ jobs:
           # Kolani deps
           # Phonikud deps
           # Copy files
-          cp -rf ../src/kolani_tts .
+          # cp -rf ../src/kolani_tts .
 
           # Git
+          rm -rf .git
           git init
           git branch -M main
           git config --global user.email "thewh1teagle"
