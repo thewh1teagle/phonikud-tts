@@ -30,7 +30,7 @@ jobs:
           cp ../examples/space.py app.py
 
           # Editor deps
-          uv export > requirements.txt
+          uv export --no-hashes > requirements.txt
           echo "gradio" >> requirements.txt            
           # Kolani deps
           # Phonikud deps

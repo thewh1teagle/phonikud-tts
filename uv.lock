@@ -286,15 +286,11 @@ wheels = [
 [[package]]
 name = "kolani"
 version = "0.3.7"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/thewh1teagle/kolani#29575128ebb6b6920f2bc17a3fc3745426e1da79" }
 dependencies = [
     { name = "colorlog" },
     { name = "num2words" },
     { name = "regex" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/94/d5/a9dbfdd7fa500ba51941bf20724ee96e82098c40691df0b3fd5d513981a0/kolani-0.3.7.tar.gz", hash = "sha256:5ac8d9b1dcd769cc9b0abf2eead16671a6f108230182c5c2efae55686a5fbb26", size = 125388 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/79/d4/e8cc478d3f24c6a90a605b857c39a99bb4df4baf126e47d0c322226f0d11/kolani-0.3.7-py3-none-any.whl", hash = "sha256:8f2efb8cbe06e624a8e52aa72cccd1aa1992443ba8639893bc49a1cf40ccbe00", size = 28063 },
 ]
 
 [[package]]
@@ -311,7 +307,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "kolani" },
+    { name = "kolani", git = "https://github.com/thewh1teagle/kolani" },
     { name = "phonikud-onnx", specifier = ">=1.0.1" },
     { name = "piper-onnx", specifier = ">=1.0.5" },
     { name = "sounddevice", specifier = ">=0.5.2" },
