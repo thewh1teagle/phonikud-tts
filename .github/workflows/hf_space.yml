@@ -29,7 +29,7 @@ jobs:
           # cd ..
           cp .github/workflows/hf_readme.md README.md
           cp examples/space.py app.py
-          cp ./src/kolani_tts .
+          cp -rf ./src/kolani_tts .
 
           # Editor deps
           uv export --no-hashes --no-emit-project > requirements.txt
