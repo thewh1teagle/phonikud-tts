@@ -20,6 +20,7 @@ jobs:
           # Prepare space
           mkdir $SPACE_NAME
           cd $SPACE_NAME
+          cp hf_readme.md README.md
           cp ../examples/space.py app.py
 
           # Editor deps
@@ -47,6 +48,7 @@ jobs:
           git add .
           git commit -m "latest"
           git push --force origin main
+          
 
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
