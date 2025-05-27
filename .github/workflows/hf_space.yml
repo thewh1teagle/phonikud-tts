@@ -33,7 +33,8 @@ jobs:
 
           # Editor deps
           uv export --no-hashes --no-emit-project > requirements.txt
-          echo "gradio" >> requirements.txt            
+          echo "gradio" >> requirements.txt
+          echo "pydantic==2.10.6" >> requirements.txt
           # Kolani deps
           # Phonikud deps
           # Copy files
