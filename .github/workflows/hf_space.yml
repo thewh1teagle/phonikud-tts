@@ -26,7 +26,7 @@ jobs:
           # Prepare space
           # mkdir $SPACE_NAME
           # cd $SPACE_NAME
-          cd ..
+          # cd ..
           cp .github/workflows/hf_readme.md README.md
           cp examples/space.py app.py
 
