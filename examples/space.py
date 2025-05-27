@@ -65,7 +65,7 @@ def demo():
 
         gr.Markdown('<div style="text-align: center;"><a href="https://github.com/thewh1teagle/kolani" target="_blank">Kolani G2P on GitHub</a></div>')
 
-    demo.launch()
+    demo.launch(share=True)
 
 if __name__ == "__main__":
     demo()
