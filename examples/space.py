@@ -45,7 +45,7 @@ def full_pipeline(mode, text, phonemes_in, phonikud, piper):
     return f"<div dir='rtl' style='font-size: 22px;'>{with_diacritics}</div>", phonemes, tmpfile.name
 
 def demo():
-    DEFAULT_TEXT = "לעיתים דווקא הדרך הפשוטה מובילה אל הדברים הכי משמעותיים בחיים."
+    DEFAULT_TEXT = "מה שבהגדרה משאיר את הכלכלה ההונגרית מאחור, אפילו ביחס למדינות כמו פולין."
     phonikud = Phonikud('phonikud-1.0.int8.onnx')
     piper = Piper('tts-model.onnx', 'tts-model.config.json')
 
