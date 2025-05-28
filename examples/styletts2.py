@@ -2,7 +2,7 @@
 wget https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx
 uv run examples/styletts2.py
 """
-from kolani_tts import Phonikud, phonemize, StyleTTS2
+from phonikud_tts import Phonikud, phonemize, StyleTTS2
 import soundfile as sf
 
 

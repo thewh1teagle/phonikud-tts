@@ -30,16 +30,16 @@ jobs:
           # cd ..
           cp .github/workflows/hf_readme.md README.md
           cp examples/space.py app.py
-          cp -rf ./src/kolani_tts .
+          cp -rf ./src/phonikud_tts .
 
           # Editor deps
           uv export --no-hashes --no-emit-project > requirements.txt
           echo "gradio" >> requirements.txt
           echo "pydantic==2.10.6" >> requirements.txt
-          # Kolani deps
+          # Phonikud deps
           # Phonikud deps
           # Copy files
-          # cp -rf ../src/kolani_tts .
+          # cp -rf ../src/phonikud_tts .
 
           # Git
           git lfs install
@@ -54,8 +54,8 @@ jobs:
           git remote add origin https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME
           
           wget --progress=bar:force https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx -O phonikud-1.0.int8.onnx
-          wget --progress=bar:force https://huggingface.co/thewh1teagle/kolani-tts-checkpoints/resolve/main/model.onnx -O tts-model.onnx
-          wget --progress=bar:force https://huggingface.co/thewh1teagle/kolani-tts-checkpoints/resolve/main/model.config.json -O tts-model.config.json
+          wget --progress=bar:force https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/model.onnx -O tts-model.onnx
+          wget --progress=bar:force https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/model.config.json -O tts-model.config.json
 
           git add .
           git commit -m "latest"
@@ -65,4 +65,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_USERNAME: "thewh1teagle"
-          SPACE_NAME: "kolani-tts"
+          SPACE_NAME: "phonikud-tts"

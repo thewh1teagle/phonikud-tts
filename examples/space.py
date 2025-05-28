@@ -9,7 +9,7 @@ uv run examples/space.py
 uv run gradio examples/space.py
 """
 import gradio as gr
-from kolani_tts import Phonikud, phonemize, Piper
+from phonikud_tts import Phonikud, phonemize, Piper
 import soundfile as sf
 import tempfile
 
@@ -51,7 +51,7 @@ def demo():
 
     theme = gr.themes.Default(font=[gr.themes.GoogleFont("Noto Sans Hebrew")])
     with gr.Blocks(theme=theme, css=css) as demo:
-        gr.Markdown("### Hebrew TTS with Kolani G2P", elem_id="title")
+        gr.Markdown("### Hebrew TTS with Phonikud G2P", elem_id="title")
 
         mode = gr.Radio(["From Text", "From Phonemes"], value="From Text", label="Input Mode")
         text_input = gr.Textbox(label="Hebrew Text", value=DEFAULT_TEXT, elem_classes=["input"], rtl=True)
@@ -67,7 +67,7 @@ def demo():
             outputs=[with_diacritics, phoneme_input, audio_output]
         )
 
-        gr.Markdown('<div style="text-align: center;"><a href="https://github.com/thewh1teagle/kolani" target="_blank">Kolani G2P on GitHub</a></div>')
+        gr.Markdown('<div style="text-align: center;"><a href="https://github.com/thewh1teagle/phonikud" target="_blank">Phonikud G2P on GitHub</a></div>')
 
     demo.launch(share=True)
 

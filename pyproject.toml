@@ -1,5 +1,5 @@
 [project]
-name = "kolani-tts"
+name = "phonikud-tts"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -8,7 +8,7 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "kolani",
+    "phonikud",
     "phonikud-onnx>=1.0.1",
     "piper-onnx>=1.0.5",
     "sounddevice>=0.5.2",
@@ -20,4 +20,4 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv.sources]
-kolani = { git = "https://github.com/thewh1teagle/kolani" }
+phonikud = { git = "https://github.com/thewh1teagle/phonikud" }

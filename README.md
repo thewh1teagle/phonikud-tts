@@ -1,5 +1,5 @@
-# kolani-tts
+# phonikud-tts
 
 Text to speech in Hebrew
 
-Based on [Kolani](https://github.com/thewh1teagle/kolani)
+Based on [Phonikud](https://github.com/thewh1teagle/phonikud)
