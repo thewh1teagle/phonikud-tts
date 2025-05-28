@@ -47,7 +47,7 @@ def full_pipeline(mode, text, phonemes_in, phonikud, piper):
 def demo():
     DEFAULT_TEXT = "לעיתים דווקא הדרך הפשוטה מובילה אל הדברים הכי משמעותיים בחיים."
     phonikud = Phonikud('phonikud-1.0.int8.onnx')
-    piper = Piper('en_US-ryan-medium.onnx', 'en_US-ryan-medium.onnx.json')
+    piper = Piper('tts-model.onnx', 'tts-model.config.json')
 
     theme = gr.themes.Default(font=[gr.themes.GoogleFont("Noto Sans Hebrew")])
     with gr.Blocks(theme=theme, css=css) as demo:

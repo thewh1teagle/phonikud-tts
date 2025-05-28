@@ -53,8 +53,8 @@ jobs:
           git remote add origin https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME
           
           wget --progress=bar:force https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx -O phonikud-1.0.int8.onnx
-          wget --progress=bar:force https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx -O en_US-ryan-medium.onnx
-          wget --progress=bar:force https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx.json -O en_US-ryan-medium.onnx.json
+          wget --progress=bar:force https://huggingface.co/thewh1teagle/kolani-tts-checkpoints/resolve/main/model.onnx -O tts-model.onnx
+          wget --progress=bar:force https://huggingface.co/thewh1teagle/kolani-tts-checkpoints/resolve/main/model.config.json -O tts-model.config.json
 
           git add .
           git commit -m "latest"
