@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths: 
       - '.github/workflows/hf_space.yml'
+      - 'examples/space.py'
   workflow_dispatch:
 
 jobs:
