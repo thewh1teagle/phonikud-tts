@@ -1,16 +1,16 @@
 """
 uv sync
-wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx
-wget https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx
-wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx.json
+wget https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx -O phonikud-1.0.int8.onnx
+wget https://huggingface.co/thewh1teagle/kolani-tts-checkpoints/resolve/main/model.onnx -O tts-model.onnx
+wget https://huggingface.co/thewh1teagle/kolani-tts-checkpoints/resolve/main/model.config.json -O tts-model.config.json
 uv run examples/piper.py
 """
-from mishel import Phonikud, phonemize, Piper
+from kolani_tts import Phonikud, phonemize, Piper
 import soundfile as sf
 
 
 phonikud = Phonikud('phonikud-1.0.int8.onnx')
-piper = Piper('en_US-ryan-medium.onnx', 'en_US-ryan-medium.onnx.json')
+piper = Piper('tts-model.onnx', 'tts-model.config.json')
 
 # Phonemize text
 text = "שלום עולם! מה קורה?"
