@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Phonikud TTS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    textarea {
+      font-size: 18px;
+      height: 100px;
+      resize: vertical;
+    }
+    #phonemes-input {
+      font-family: monospace;
+    }
+    .generate-btn {
+      height: 40px;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+    .status {
+      margin-top: 6px;
+      font-weight: bold;
+      min-height: 1.5em;
+    }
+    .rtl {
+      direction: rtl;
+      font-size: 18px;
+      white-space: pre-wrap;
+    }
+    .input-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .input-label {
+      flex-basis: 100%;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .note-small {
+      font-weight: normal;
+      font-size: smaller;
+      color: #6c757d; /* bootstrap muted color */
+      margin-left: 6px;
+    }
+    #audio {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    @media (min-width: 768px) {
+      .input-row {
+        flex-wrap: nowrap;
+      }
+      textarea {
+        flex-grow: 1;
+      }
+    }
+  </style>
+</head>
+<body class="container py-4">
+  <h2 class="text-center mb-4">🎙️ Hebrew TTS with Phonikud</h2>
+
+  <!-- Text input -->
+  <div class="input-row">
+    <label for="text-input" class="input-label">Hebrew Text</label>
+    <textarea id="text-input" class="form-control rtl"></textarea>
+    <button class="btn btn-primary generate-btn" onclick="generate('text')">Generate from Text</button>
+    <div id="text-status" class="status"></div>
+  </div>
+
+  <!-- Diacritics input -->
+  <div class="input-row">
+    <label for="diacritics-input" class="input-label">
+      Text with Diacritics
+      <small class="note-small">(Press 1 for Hatama, 2 for Shva Na)</small>
+    </label>
+    <textarea id="diacritics-input" class="form-control rtl"></textarea>
+    <button class="btn btn-success generate-btn" onclick="generate('diacritics')">Generate from Diacritics</button>
+    <div id="diacritics-status" class="status"></div>
+  </div>
+
+  <!-- Phoneme input -->
+  <div class="input-row">
+    <label for="phonemes-input" class="input-label">Phonemes</label>
+    <textarea id="phonemes-input" class="form-control"></textarea>
+    <button class="btn btn-warning generate-btn" onclick="generate('phonemes')">Generate from Phonemes</button>
+    <div id="phonemes-status" class="status"></div>
+  </div>
+
+  <!-- Audio result -->
+  <audio id="audio" controls style="display:none;"></audio>
+
+  <script>
+    function generate(mode) {
+      const statusId = {
+        text: "text-status",
+        diacritics: "diacritics-status",
+        phonemes: "phonemes-status",
+      }[mode];
+
+      document.getElementById(statusId).textContent = "Generating...";
+      const audio = document.getElementById("audio");
+      audio.style.display = "none";
+      audio.pause();
+      audio.src = "";
+
+      const formData = new FormData();
+      formData.append("mode", mode);
+      formData.append(
+        "text",
+        mode === "phonemes" ? "" : document.getElementById(mode + "-input").value
+      );
+      formData.append("phonemes", document.getElementById("phonemes-input").value);
+
+      fetch("/generate", { method: "POST", body: formData })
+        .then((res) => res.json())
+        .then((data) => {
+          document.getElementById("diacritics-input").value = data.diacritics || "";
+          document.getElementById("phonemes-input").value = data.phonemes || "";
+
+          audio.src = data.audio;
+          audio.style.display = "block";
+          audio.play();
+
+          document.getElementById(statusId).textContent = "Ready";
+        })
+        .catch((err) => {
+          document.getElementById(statusId).textContent = "Error";
+          console.error(err);
+        });
+    }
+
+    // Insert Hebrew diacritics when pressing 1 or 2 in diacritics input
+    const diacriticsInput = document.getElementById("diacritics-input");
+    diacriticsInput.addEventListener("keydown", function (event) {
+      if (event.key === "1" || event.key === "2") {
+        event.preventDefault();
+
+        const charToInsert = event.key === "1" ? "\u05AB" : "\u05BD";
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        const text = this.value;
+
+        this.value = text.slice(0, start) + charToInsert + text.slice(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+      }
+    });
+
+    // Set initial example text on load
+    document.getElementById("text-input").value =
+      "מה שבהגדרה משאיר את הכלכלה ההונגרית מאחור, אפילו ביחס למדינות כמו פולין.";
+  </script>
+</body>
+</html>
