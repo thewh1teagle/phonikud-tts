@@ -30,7 +30,7 @@ jobs:
           # cd $SPACE_NAME
           # cd ..
           cp .github/workflows/hf_readme.md README.md
-          cp examples/space_v1/*
+          cp examples/space_v1/* .
           cp -rf ./src/phonikud_tts .
 
           # Editor deps
