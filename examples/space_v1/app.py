@@ -4,16 +4,14 @@ uv pip install Flask
 wget https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx
 wget https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/model.onnx
 wget https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/model.config.json
-uv run ./examples/space_v1/main.py
+uv run ./examples/space_v1/app.py
 """
 
 from flask import Flask, render_template, request, jsonify
 from phonikud_tts import Phonikud, phonemize, Piper
 import soundfile as sf
-import tempfile
 import base64
 import io
-import os
 
 app = Flask(__name__)
 phonikud = Phonikud("phonikud-1.0.int8.onnx")
