@@ -2,108 +2,504 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Phonikud TTS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTS with Phonikud</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
-    textarea {
-      font-size: 18px;
-      height: 100px;
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #64748b;
+      --success-color: #059669;
+      --warning-color: #d97706;
+      --accent-color: #7c3aed;
+      --bg-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --border-radius: 12px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.025em;
+    }
+
+    .header-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .github-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .main-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: var(--transition);
+    }
+
+    .main-card:hover {
+      box-shadow: var(--hover-shadow);
+    }
+
+    .tabs-container {
+      border-bottom: 1px solid #e5e7eb;
+      background: #f8fafc;
+      padding: 0;
+    }
+
+    .nav-tabs {
+      border: none;
+      margin: 0;
+    }
+
+    .nav-tabs .nav-link {
+      border: none;
+      border-radius: 0;
+      padding: 16px 24px;
+      font-weight: 600;
+      color: var(--secondary-color);
+      transition: var(--transition);
+      position: relative;
+      background: transparent;
+    }
+
+    .nav-tabs .nav-link:hover {
+      color: var(--primary-color);
+      background-color: rgba(37, 99, 235, 0.05);
+    }
+
+    .nav-tabs .nav-link.active {
+      color: var(--primary-color);
+      background-color: white;
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    .nav-tabs .nav-link i {
+      margin-right: 8px;
+    }
+
+    .tab-content {
+      padding: 32px;
+    }
+
+    .input-section {
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-description {
+      color: var(--secondary-color);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .form-control {
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 15px;
+      transition: var(--transition);
+      flex: 1;
+      min-height: 70px;
       resize: vertical;
     }
-    #phonemes-input {
-      font-family: monospace;
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      outline: none;
     }
-    .generate-btn {
-      height: 40px;
-      margin-left: 10px;
-      white-space: nowrap;
-    }
-    .status {
-      margin-top: 6px;
-      font-weight: bold;
-      min-height: 1.5em;
-    }
+
     .rtl {
       direction: rtl;
-      font-size: 18px;
-      white-space: pre-wrap;
+      font-family: 'David Libre', 'Times New Roman', serif;
+      font-size: 16px;
     }
-    .input-row {
+
+    .phoneme-input {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 14px;
+    }
+
+    .btn-generate {
+      background: var(--primary-color);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 12px 24px;
+      font-weight: 600;
+      font-size: 14px;
+      min-width: 120px;
+      height: fit-content;
+      transition: var(--transition);
       display: flex;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-      gap: 10px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
     }
-    .input-label {
-      flex-basis: 100%;
-      margin-bottom: 4px;
+
+    .btn-generate:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-generate:active {
+      transform: translateY(0);
+    }
+
+    .btn-generate:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status-indicator {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      text-align: center;
+      font-size: 14px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .status-generating {
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      color: white;
+    }
+
+    .status-ready {
+      background: linear-gradient(90deg, #10b981, #059669);
+      color: white;
+    }
+
+    .status-error {
+      background: linear-gradient(90deg, #ef4444, #dc2626);
+      color: white;
+    }
+
+    .helper-info {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #475569;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .helper-info kbd {
+      background: #374151;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
       font-weight: 600;
     }
-    .note-small {
-      font-weight: normal;
-      font-size: smaller;
-      color: #6c757d; /* bootstrap muted color */
-      margin-left: 6px;
+
+    .audio-section {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
     }
+
+    .audio-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
     #audio {
       width: 100%;
-      margin-top: 1rem;
+      max-width: 400px;
+      border-radius: 8px;
     }
-    @media (min-width: 768px) {
-      .input-row {
-        flex-wrap: nowrap;
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-pane {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
       }
-      textarea {
-        flex-grow: 1;
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .tab-content {
+        padding: 24px 20px;
+      }
+
+      .input-group {
+        flex-direction: column;
+      }
+
+      .btn-generate {
+        width: 100%;
+      }
+
+      .nav-tabs .nav-link {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 1.75rem;
+      }
+
+      .nav-tabs .nav-link {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+
+      .tab-content {
+        padding: 20px 16px;
       }
     }
   </style>
 </head>
-<body class="container py-4">
-  <h2 class="text-center mb-4">🎙️ Hebrew TTS with Phonikud</h2>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1><i class="fas fa-microphone-alt"></i> TTS with Phonikud</h1>
+      <p class="header-subtitle">Professional Hebrew Text-to-Speech with Phonetic Analysis</p>
+      <a href="https://github.com/thewh1teagle/phonikud" class="github-link" target="_blank">
+        <i class="fab fa-github"></i>
+        View Phonikud on GitHub
+      </a>
+    </div>
 
-  <!-- Text input -->
-  <div class="input-row">
-    <label for="text-input" class="input-label">Hebrew Text</label>
-    <textarea id="text-input" class="form-control rtl"></textarea>
-    <button class="btn btn-primary generate-btn" onclick="generate('text')">Generate from Text</button>
-    <div id="text-status" class="status"></div>
+    <!-- Main Card with Tabs -->
+    <div class="main-card">
+      <!-- Tab Navigation -->
+      <div class="tabs-container">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#text-tab" type="button">
+              <i class="fas fa-font"></i>Hebrew Text
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#diacritics-tab" type="button">
+              <i class="fas fa-language"></i>With Diacritics
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#phonemes-tab" type="button">
+              <i class="fas fa-code"></i>Phonemes
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <!-- Hebrew Text Tab -->
+        <div class="tab-pane fade show active" id="text-tab">
+          <div class="input-section">
+            <h3 class="section-title">
+              <i class="fas fa-font"></i>
+              Hebrew Text Input
+            </h3>
+            <p class="section-description">
+              Enter your Hebrew text to generate speech with automatic phonetic analysis
+            </p>
+            <div class="input-group">
+              <textarea 
+                id="text-input" 
+                class="form-control rtl" 
+                placeholder="הכנס כאן את הטקסט העברי שלך..."
+              ></textarea>
+              <button class="btn-generate" onclick="generate('text')" id="text-btn">
+                <i class="fas fa-play"></i>
+                Generate
+              </button>
+            </div>
+            <div id="text-status" class="status-indicator" style="display: none;"></div>
+          </div>
+        </div>
+
+        <!-- Diacritics Tab -->
+        <div class="tab-pane fade" id="diacritics-tab">
+          <div class="input-section">
+            <h3 class="section-title">
+              <i class="fas fa-language"></i>
+              Text with Diacritics
+            </h3>
+            <p class="section-description">
+              Enhanced Hebrew text with vowel markings for precise pronunciation control
+            </p>
+            <div class="input-group">
+              <textarea 
+                id="diacritics-input" 
+                class="form-control rtl" 
+                placeholder="טקסט עם ניקוד יופיע כאן או הכנס ידנית..."
+              ></textarea>
+              <button class="btn-generate" onclick="generate('diacritics')" id="diacritics-btn">
+                <i class="fas fa-magic"></i>
+                Generate
+              </button>
+            </div>
+            <div class="helper-info">
+              <i class="fas fa-keyboard"></i>
+              Press <kbd>1</kbd> for Hatama. Press <kbd>2</kbd> for Shva Na
+            </div>
+            <div id="diacritics-status" class="status-indicator" style="display: none;"></div>
+          </div>
+        </div>
+
+        <!-- Phonemes Tab -->
+        <div class="tab-pane fade" id="phonemes-tab">
+          <div class="input-section">
+            <h3 class="section-title">
+              <i class="fas fa-code"></i>
+              Phonetic Representation
+            </h3>
+            <p class="section-description">
+              Direct phonemic transcription for advanced pronunciation control
+            </p>
+            <div class="input-group">
+              <textarea 
+                id="phonemes-input" 
+                class="form-control phoneme-input" 
+                placeholder="Phonetic transcription will appear here or enter manually..."
+              ></textarea>
+              <button class="btn-generate" onclick="generate('phonemes')" id="phonemes-btn">
+                <i class="fas fa-waveform-lines"></i>
+                Generate
+              </button>
+            </div>
+            <div id="phonemes-status" class="status-indicator" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audio Result Section -->
+      <div class="audio-section" id="audio-section" style="display: none;">
+        <h3 class="audio-title">
+          <i class="fas fa-volume-up"></i>
+          Generated Audio
+        </h3>
+        <audio id="audio" controls></audio>
+      </div>
+    </div>
   </div>
 
-  <!-- Diacritics input -->
-  <div class="input-row">
-    <label for="diacritics-input" class="input-label">
-      Text with Diacritics
-      <small class="note-small">(Press 1 for Hatama, 2 for Shva Na)</small>
-    </label>
-    <textarea id="diacritics-input" class="form-control rtl"></textarea>
-    <button class="btn btn-success generate-btn" onclick="generate('diacritics')">Generate from Diacritics</button>
-    <div id="diacritics-status" class="status"></div>
-  </div>
-
-  <!-- Phoneme input -->
-  <div class="input-row">
-    <label for="phonemes-input" class="input-label">Phonemes</label>
-    <textarea id="phonemes-input" class="form-control"></textarea>
-    <button class="btn btn-warning generate-btn" onclick="generate('phonemes')">Generate from Phonemes</button>
-    <div id="phonemes-status" class="status"></div>
-  </div>
-
-  <!-- Audio result -->
-  <audio id="audio" controls style="display:none;"></audio>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function generate(mode) {
-      const statusId = {
-        text: "text-status",
-        diacritics: "diacritics-status",
-        phonemes: "phonemes-status",
-      }[mode];
-
-      document.getElementById(statusId).textContent = "Generating...";
+      const statusId = mode + "-status";
+      const buttonId = mode + "-btn";
+      const statusElement = document.getElementById(statusId);
+      const buttonElement = document.getElementById(buttonId);
+      
+      // Show and update status
+      statusElement.style.display = "flex";
+      statusElement.textContent = "Generating audio...";
+      statusElement.className = "status-indicator status-generating";
+      
+      // Disable button
+      buttonElement.disabled = true;
+      
+      // Hide audio section
+      const audioSection = document.getElementById("audio-section");
       const audio = document.getElementById("audio");
-      audio.style.display = "none";
+      // audioSection.style.display = "none";
       audio.pause();
       audio.src = "";
 
@@ -118,22 +514,38 @@
       fetch("/generate", { method: "POST", body: formData })
         .then((res) => res.json())
         .then((data) => {
+          // Update all fields with returned data
           document.getElementById("diacritics-input").value = data.diacritics || "";
           document.getElementById("phonemes-input").value = data.phonemes || "";
 
+          // Set up audio
           audio.src = data.audio;
-          audio.style.display = "block";
-          audio.play();
+          audioSection.style.display = "block";
+          
+          // Smooth scroll to audio
+          // audioSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          
+          // Auto-play audio
+          setTimeout(() => {
+            audio.play().catch(e => console.log("Auto-play prevented by browser"));
+          }, 300);
 
-          document.getElementById(statusId).textContent = "Ready";
+          // Update status to success
+          statusElement.textContent = "✓ Audio generated successfully";
+          statusElement.className = "status-indicator status-ready";
         })
         .catch((err) => {
-          document.getElementById(statusId).textContent = "Error";
+          statusElement.textContent = "✗ Error generating audio";
+          statusElement.className = "status-indicator status-error";
           console.error(err);
+        })
+        .finally(() => {
+          // Re-enable button
+          buttonElement.disabled = false;
         });
     }
 
-    // Insert Hebrew diacritics when pressing 1 or 2 in diacritics input
+    // Enhanced diacritics input with keyboard shortcuts
     const diacriticsInput = document.getElementById("diacritics-input");
     diacriticsInput.addEventListener("keydown", function (event) {
       if (event.key === "1" || event.key === "2") {
@@ -146,12 +558,32 @@
 
         this.value = text.slice(0, start) + charToInsert + text.slice(end);
         this.selectionStart = this.selectionEnd = start + 1;
+        
+        // Visual feedback
+        this.style.transform = "scale(1.01)";
+        setTimeout(() => {
+          this.style.transform = "scale(1)";
+        }, 150);
       }
     });
 
-    // Set initial example text on load
-    document.getElementById("text-input").value =
-      "מה שבהגדרה משאיר את הכלכלה ההונגרית מאחור, אפילו ביחס למדינות כמו פולין.";
+    // Set initial example text
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById("text-input").value =
+          "מה שבהגדרה משאיר את הכלכלה ההונגרית מאחור, אפילו ביחס למדינות כמו פולין.";
+      }, 500);
+    });
+
+    // Tab switching enhancement
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+      tab.addEventListener('shown.bs.tab', function (event) {
+        // Hide all status indicators when switching tabs
+        document.querySelectorAll('.status-indicator').forEach(status => {
+          status.style.display = 'none';
+        });
+      });
+    });
   </script>
 </body>
 </html>
