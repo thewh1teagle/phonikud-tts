@@ -160,7 +160,10 @@
       align-items: flex-start;
     }
 
+    
+
     .form-control {
+      
       border: 2px solid #e5e7eb;
       border-radius: 8px;
       padding: 12px 16px;
@@ -402,7 +405,7 @@
             <div class="input-group">
               <textarea 
                 id="text-input" 
-                class="form-control rtl" 
+                class="form-control rtl w-100" 
                 placeholder="הכנס כאן את הטקסט העברי שלך..."
               ></textarea>
               <button class="btn-generate" onclick="generate('text')" id="text-btn">
@@ -427,7 +430,7 @@
             <div class="input-group">
               <textarea 
                 id="diacritics-input" 
-                class="form-control rtl" 
+                class="form-control rtl w-100" 
                 placeholder="טקסט עם ניקוד יופיע כאן או הכנס ידנית..."
               ></textarea>
               <button class="btn-generate" onclick="generate('diacritics')" id="diacritics-btn">
@@ -456,7 +459,7 @@
             <div class="input-group">
               <textarea 
                 id="phonemes-input" 
-                class="form-control phoneme-input" 
+                class="form-control phoneme-input w-100" 
                 placeholder="Phonetic transcription will appear here or enter manually..."
               ></textarea>
               <button class="btn-generate" onclick="generate('phonemes')" id="phonemes-btn">
