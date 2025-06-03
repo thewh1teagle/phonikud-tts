@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,7 +53,7 @@
     }
 
     .header-subtitle {
-      font-size: 1.1rem;
+      font-size: 1rem;
       opacity: 0.9;
       margin-bottom: 20px;
       font-weight: 400;
@@ -65,7 +66,7 @@
       color: white;
       text-decoration: none;
       background: rgba(255, 255, 255, 0.1);
-      padding: 10px 20px;
+      padding: 6px 12px;
       border-radius: 8px;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -160,14 +161,14 @@
       align-items: flex-start;
     }
 
-    
+
 
     .form-control {
-      
+
       border: 2px solid #e5e7eb;
       border-radius: 8px;
       padding: 12px 16px;
-      font-size: 15px;
+      font-size: 22px !important;
       transition: var(--transition);
       flex: 1;
       min-height: 70px;
@@ -243,6 +244,19 @@
       color: white;
     }
 
+    /* Import Noto Sans from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+    input,
+    textarea,
+    select {
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 400;
+      /* bigger font size */
+      color: #333;
+    }
+
+
     .status-ready {
       background: linear-gradient(90deg, #10b981, #059669);
       color: white;
@@ -266,6 +280,32 @@
       gap: 8px;
     }
 
+    .helper-info button {
+      display: inline-block;
+      padding: 3px 8px;
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+      color: #444;
+      background-color: #f7f7f7;
+      border: 1.5px solid #bbb;
+      border-radius: 4px;
+      box-shadow:
+        inset 0 -1px 0 #bbb,
+        0 2px 0 #ccc;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .helper-info button:hover {
+      background-color: #e7e7e7;
+      box-shadow:
+        inset 0 -1px 0 #999,
+        0 3px 0 #aaa;
+    }
+
+
+
     .helper-info kbd {
       background: #374151;
       color: white;
@@ -279,7 +319,7 @@
       background: #f8fafc;
       border: 1px solid #e5e7eb;
       border-radius: 8px;
-      padding: 24px;
+      padding: 24px 0px;
       text-align: center;
       margin-top: 24px;
     }
@@ -303,8 +343,15 @@
 
     /* Animations */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .tab-pane {
@@ -337,7 +384,56 @@
         padding: 12px 16px;
         font-size: 14px;
       }
+
     }
+
+    /* Adjust font size for small screens */
+    @media (max-width: 768px) {
+      .nav-tabs .nav-link {
+        font-size: 12px;
+        /* smaller font */
+        padding: 10px 12px;
+        /* reduce padding if needed */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-tabs .nav-link {
+        /* even smaller for very small screens */
+        padding: 8px 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-tabs {
+        display: flex;
+        flex-direction: column;
+        /* stack vertically */
+      }
+
+      .nav-tabs .nav-link {
+        display: block;
+        width: 100%;
+        text-align: center;
+        /* optional: center the text */
+        font-size: 14px;
+        /* adjust font size if needed */
+        padding: 12px 0;
+        /* vertical padding */
+        border-radius: 0;
+        /* remove rounded corners if you want a clean look */
+        border-bottom: 1px solid #ddd;
+        /* optional: separate tabs */
+      }
+
+      .nav-tabs .nav-link.active {
+        font-weight: bold;
+        /* highlight active tab */
+        background-color: #f8f9fa;
+        /* optional background for active tab */
+      }
+    }
+
 
     @media (max-width: 480px) {
       .header h1 {
@@ -355,11 +451,12 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <!-- Header -->
     <div class="header">
-      <h1><i class="fas fa-microphone-alt"></i> TTS with Phonikud</h1>
+      <h2><i class="fas fa-microphone-alt"></i> TTS with Phonikud</h2>
       <p class="header-subtitle">Professional Hebrew Text-to-Speech with Phonetic Analysis</p>
       <a href="https://github.com/thewh1teagle/phonikud" class="github-link" target="_blank">
         <i class="fab fa-github"></i>
@@ -403,11 +500,8 @@
               Enter your Hebrew text to generate speech with automatic phonetic analysis
             </p>
             <div class="input-group">
-              <textarea 
-                id="text-input" 
-                class="form-control rtl w-100" 
-                placeholder="הכנס כאן את הטקסט העברי שלך..."
-              ></textarea>
+              <textarea id="text-input" class="form-control rtl w-100"
+                placeholder="הכנס כאן את הטקסט העברי שלך..."></textarea>
               <button class="btn-generate" onclick="generate('text')" id="text-btn">
                 <i class="fas fa-play"></i>
                 Generate
@@ -428,20 +522,18 @@
               Enhanced Hebrew text with vowel markings for precise pronunciation control
             </p>
             <div class="input-group">
-              <textarea 
-                id="diacritics-input" 
-                class="form-control rtl w-100" 
-                placeholder="טקסט עם ניקוד יופיע כאן או הכנס ידנית..."
-              ></textarea>
+              <textarea id="diacritics-input" class="form-control rtl w-100"
+                placeholder="טקסט עם ניקוד יופיע כאן או הכנס ידנית..."></textarea>
               <button class="btn-generate" onclick="generate('diacritics')" id="diacritics-btn">
                 <i class="fas fa-magic"></i>
                 Generate
               </button>
             </div>
             <div class="helper-info">
-              <i class="fas fa-keyboard"></i>
-              Press <kbd>1</kbd> for Hatama. Press <kbd>2</kbd> for Shva Na
+              <button type="button" id="btnHatama">Press for Hatama</button>
+              <button type="button" id="btnVocalShva">Press for Vocal Shva</button>
             </div>
+
             <div id="diacritics-status" class="status-indicator" style="display: none;"></div>
           </div>
         </div>
@@ -457,11 +549,8 @@
               Direct phonemic transcription for advanced pronunciation control
             </p>
             <div class="input-group">
-              <textarea 
-                id="phonemes-input" 
-                class="form-control phoneme-input w-100" 
-                placeholder="Phonetic transcription will appear here or enter manually..."
-              ></textarea>
+              <textarea id="phonemes-input" class="form-control phoneme-input w-100"
+                placeholder="Phonetic transcription will appear here or enter manually..."></textarea>
               <button class="btn-generate" onclick="generate('phonemes')" id="phonemes-btn">
                 <i class="fas fa-waveform-lines"></i>
                 Generate
@@ -490,15 +579,15 @@
       const buttonId = mode + "-btn";
       const statusElement = document.getElementById(statusId);
       const buttonElement = document.getElementById(buttonId);
-      
+
       // Show and update status
       statusElement.style.display = "flex";
       statusElement.textContent = "Generating audio...";
       statusElement.className = "status-indicator status-generating";
-      
+
       // Disable button
       buttonElement.disabled = true;
-      
+
       // Hide audio section
       const audioSection = document.getElementById("audio-section");
       const audio = document.getElementById("audio");
@@ -524,10 +613,10 @@
           // Set up audio
           audio.src = data.audio;
           audioSection.style.display = "block";
-          
+
           // Smooth scroll to audio
           // audioSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          
+
           // Auto-play audio
           setTimeout(() => {
             audio.play().catch(e => console.log("Auto-play prevented by browser"));
@@ -548,27 +637,30 @@
         });
     }
 
-    // Enhanced diacritics input with keyboard shortcuts
-    const diacriticsInput = document.getElementById("diacritics-input");
-    diacriticsInput.addEventListener("keydown", function (event) {
-      if (event.key === "1" || event.key === "2") {
-        event.preventDefault();
 
-        const charToInsert = event.key === "1" ? "\u05AB" : "\u05BD";
-        const start = this.selectionStart;
-        const end = this.selectionEnd;
-        const text = this.value;
+    const diacriticsInput = document.getElementById('diacritics-input'); // fix id here
+    const btnHatama = document.getElementById('btnHatama');
+    const btnVocalShva = document.getElementById('btnVocalShva');
 
-        this.value = text.slice(0, start) + charToInsert + text.slice(end);
-        this.selectionStart = this.selectionEnd = start + 1;
-        
-        // Visual feedback
-        this.style.transform = "scale(1.01)";
-        setTimeout(() => {
-          this.style.transform = "scale(1)";
-        }, 150);
-      }
+    function insertAtCursor(charToInsert) {
+      const start = diacriticsInput.selectionStart;
+      const end = diacriticsInput.selectionEnd;
+      const text = diacriticsInput.value;
+
+      diacriticsInput.value = text.slice(0, start) + charToInsert + text.slice(end);
+      // Move cursor after inserted char
+      diacriticsInput.selectionStart = diacriticsInput.selectionEnd = start + charToInsert.length;
+      diacriticsInput.focus();
+    }
+
+    btnHatama.addEventListener('click', () => {
+      insertAtCursor('\u05ab'); // Hebrew Shin Dot (Hatama)
     });
+
+    btnVocalShva.addEventListener('click', () => {
+      insertAtCursor('\u05bd'); // Hebrew Vocal Shva
+    });
+
 
     // Set initial example text
     window.addEventListener('load', () => {
@@ -589,4 +681,5 @@
     });
   </script>
 </body>
+
 </html>

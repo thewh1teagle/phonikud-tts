@@ -5,7 +5,7 @@ on:
     paths: 
       - '.github/workflows/hf_space.yml'
       - 'examples/space.py'
-      - 'examples/space_v1/'
+      - 'examples/space_v1/**'
   workflow_dispatch:
 
 jobs:
