@@ -4,7 +4,6 @@ on:
     branches: [main]
     paths: 
       - '.github/workflows/hf_space.yml'
-      - 'examples/space.py'
       - 'examples/space_v1/**'
   workflow_dispatch:
 
@@ -25,22 +24,16 @@ jobs:
       - name: Prepare and push to HF
         run: |
 
-          # Prepare space
-          # mkdir $SPACE_NAME
-          # cd $SPACE_NAME
-          # cd ..
-          cp .github/workflows/hf_readme.md README.md
-          cp -rf examples/space_v1/* .
-          cp -rf ./src/phonikud_tts .
 
-          # Editor deps
           uv export --no-hashes --no-emit-project > requirements.txt
           echo "Flask" >> requirements.txt
-          # echo "pydantic==2.10.6" >> requirements.txt
-          # Phonikud deps
-          # Phonikud deps
-          # Copy files
-          # cp -rf ../src/phonikud_tts .
+
+          # Prepare space
+          mkdir $SPACE_NAME
+          cd $SPACE_NAME
+          cp -rf ../requirements.txt
+          cp -rf ../examples/space_v1/* .
+          cp -rf ../src/phonikud_tts .
 
           # Git
           git lfs install
