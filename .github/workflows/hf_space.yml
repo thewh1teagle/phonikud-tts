@@ -31,7 +31,7 @@ jobs:
           # Prepare space
           mkdir $SPACE_NAME
           cd $SPACE_NAME
-          cp -rf ../requirements.txt
+          cp -rf ../requirements.txt .
           cp -rf ../examples/space_v1/* .
           cp -rf ../src/phonikud_tts .
 
