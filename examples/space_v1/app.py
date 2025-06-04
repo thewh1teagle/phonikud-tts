@@ -15,7 +15,7 @@ import io
 
 app = Flask(__name__)
 phonikud = Phonikud("phonikud-1.0.int8.onnx")
-piper = Piper("model_ember.onnx", "model.config.json")
+piper = Piper("model.onnx", "model.config.json")
 
 @app.route("/")
 def index():
