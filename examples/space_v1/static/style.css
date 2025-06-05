@@ -367,7 +367,7 @@ body {
 
   .main-card {
     
-    height: 95vh;
+    min-height: 95vh;
     display: flex;
     flex-direction: column;
   }
@@ -477,7 +477,7 @@ textarea {
 
 @media (max-width: 768px) {
   .main-card {
-    min-height: 40vh;
+    min-height: 80vh;
   }
 
   textarea {
