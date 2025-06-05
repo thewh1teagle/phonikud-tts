@@ -1,0 +1,123 @@
+function hasDiacritics(text) {
+    // Check for Hebrew diacritics (nikud) in the range \u05b0 to \u05c7
+    return /[\u05b0-\u05c7]/.test(text);
+}
+
+function generate(mode) {
+    const statusId = mode + "-status";
+    const buttonId = mode + "-btn";
+    const statusElement = document.getElementById(statusId);
+    const buttonElement = document.getElementById(buttonId);
+    const alertElement = document.getElementById("diacritics-alert");
+
+    // Hide alert first
+    if (alertElement) {
+        alertElement.style.display = "none";
+    }
+
+    // Check for diacritics if in diacritics mode
+    if (mode === "diacritics") {
+        const text = document.getElementById("diacritics-input").value;
+        if (text && !hasDiacritics(text)) {
+            alertElement.style.display = "block";
+            statusElement.style.display = 'none'
+            return;
+        }
+    }
+
+    // Show and update status
+    statusElement.style.display = "flex";
+    statusElement.textContent = "Generating audio...";
+    statusElement.className = "status-indicator status-generating";
+
+    // Disable button
+    buttonElement.disabled = true;
+
+    // Hide audio section
+    const audioSection = document.getElementById("audio-section");
+    const audio = document.getElementById("audio");
+    audio.pause();
+    audio.src = "";
+
+    const formData = new FormData();
+    formData.append("mode", mode);
+    formData.append(
+        "text",
+        mode === "phonemes" ? "" : document.getElementById(mode + "-input").value
+    );
+    formData.append("phonemes", document.getElementById("phonemes-input").value);
+
+    fetch("/generate", { method: "POST", body: formData })
+        .then((res) => res.json())
+        .then((data) => {
+            // Update all fields with returned data
+            document.getElementById("diacritics-input").value = data.diacritics || "";
+            document.getElementById("phonemes-input").value = data.phonemes || "";
+
+            // Set up audio
+            audio.src = data.audio;
+            audioSection.style.display = "block";
+
+            // Auto-play audio
+            setTimeout(() => {
+                audio.play().catch(e => console.log("Auto-play prevented by browser"));
+            }, 300);
+
+            // Update status to success
+            statusElement.textContent = "✓ Audio generated successfully";
+            statusElement.className = "status-indicator status-ready";
+        })
+        .catch((err) => {
+            statusElement.textContent = "✗ Error generating audio";
+            statusElement.className = "status-indicator status-error";
+            console.error(err);
+        })
+        .finally(() => {
+            // Re-enable button
+            buttonElement.disabled = false;
+        });
+}
+
+const diacriticsInput = document.getElementById('diacritics-input');
+const btnHatama = document.getElementById('btnHatama');
+const btnVocalShva = document.getElementById('btnVocalShva');
+
+function insertAtCursor(charToInsert) {
+    const start = diacriticsInput.selectionStart;
+    const end = diacriticsInput.selectionEnd;
+    const text = diacriticsInput.value;
+
+    diacriticsInput.value = text.slice(0, start) + charToInsert + text.slice(end);
+    // Move cursor after inserted char
+    diacriticsInput.selectionStart = diacriticsInput.selectionEnd = start + charToInsert.length;
+    diacriticsInput.focus();
+}
+
+btnHatama.addEventListener('click', () => {
+    insertAtCursor('\u05ab'); // Hebrew Shin Dot (Hatama)
+});
+
+btnVocalShva.addEventListener('click', () => {
+    insertAtCursor('\u05bd'); // Hebrew Vocal Shva
+});
+
+// Set initial example text
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById("text-input").value =
+            "מה שבהגדרה משאיר את הכלכלה ההונגרית מאחור, אפילו ביחס למדינות כמו פולין.";
+    }, 500);
+});
+
+// Tab switching enhancement
+document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+    tab.addEventListener('shown.bs.tab', function (event) {
+        // Hide all status indicators and alerts when switching tabs
+        document.querySelectorAll('.status-indicator').forEach(status => {
+            status.style.display = 'none';
+        });
+        document.querySelectorAll('.alert').forEach(alert => {
+            alert.style.display = 'none';
+        });
+    });
+});
