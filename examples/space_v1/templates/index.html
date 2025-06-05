@@ -82,31 +82,32 @@
               </p>
               <div class="input-group">
                 <textarea
-                  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                  autocomplete="off"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="false"
                   id="text-input"
                   class="form-control rtl w-100 h-100"
                   placeholder="הכנס כאן את הטקסט העברי שלך..."
                 ></textarea>
               </div>
             </div>
-                    <div>
-            <button
-              class="btn-generate"
-              onclick="generate('text')"
-              id="text-btn"
-            >
-              <i class="fas fa-play"></i>
-              Generate
-            </button>
-            <div
-              id="text-status"
-              class="status-indicator"
-              style="display: none"
-            ></div>
+            <div>
+              <button
+                class="btn-generate"
+                onclick="generate('text')"
+                id="text-btn"
+              >
+                <i class="fas fa-play"></i>
+                Generate
+              </button>
+              <div
+                id="text-status"
+                class="status-indicator"
+                style="display: none"
+              ></div>
+            </div>
           </div>
-          </div>
-
-  
 
           <!-- Diacritics Tab -->
           <div class="tab-pane fade" id="diacritics-tab">
@@ -121,19 +122,29 @@
               </p>
               <div class="input-group">
                 <textarea
-                  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                  autocomplete="off"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="false"
                   id="diacritics-input"
                   class="form-control rtl w-100"
                   placeholder="טקסט עם ניקוד יופיע כאן או הכנס ידנית..."
                 ></textarea>
-                <button
-                  class="btn-generate"
-                  onclick="generate('diacritics')"
-                  id="diacritics-btn"
-                >
-                  <i class="fas fa-magic"></i>
-                  Generate
-                </button>
+                <div>
+                  <button
+                    class="btn-generate"
+                    onclick="generate('diacritics')"
+                    id="diacritics-btn"
+                  >
+                    <i class="fas fa-play"></i>
+                    Generate
+                  </button>
+                  <div
+                    id="text-status"
+                    class="status-indicator"
+                    style="display: none"
+                  ></div>
+                </div>
               </div>
               <div class="helper-info">
                 <button type="button" class="helper-btn" id="btnHatama">
@@ -174,19 +185,29 @@
               </p>
               <div class="input-group">
                 <textarea
-                  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                  autocomplete="off"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="false"
                   id="phonemes-input"
                   class="form-control w-100 phoneme-input"
                   placeholder="Phonetic transcription will appear here or enter manually..."
                 ></textarea>
-                <button
-                  class="btn-generate"
-                  onclick="generate('phonemes')"
-                  id="phonemes-btn"
-                >
-                  <i class="fas fa-waveform-lines"></i>
-                  Generate
-                </button>
+                <div>
+                  <button
+                    class="btn-generate"
+                    onclick="generate('phonemes')"
+                    id="phonemes-btn"
+                  >
+                    <i class="fas fa-play"></i>
+                    Generate
+                  </button>
+                  <div
+                    id="text-status"
+                    class="status-indicator"
+                    style="display: none"
+                  ></div>
+                </div>
               </div>
               <div
                 id="phonemes-status"
