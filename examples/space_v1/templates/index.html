@@ -87,7 +87,7 @@
                   autocapitalize="off"
                   spellcheck="false"
                   id="text-input"
-                  class="form-control rtl w-100 h-100"
+                  class="form-control rtl w-100 "
                   placeholder="הכנס כאן את הטקסט העברי שלך..."
                 ></textarea>
               </div>
@@ -147,11 +147,11 @@
                 </div>
               </div>
               <div class="helper-info">
-                <button type="button" class="helper-btn" id="btnHatama">
+                <button type="button" class="helper-btn" id="btnHatama" onclick="insertAtCursor('\u05ab', 'diacritics')">
                   <i class="fas fa-dot-circle"></i>
                   Press for Hatama
                 </button>
-                <button type="button" class="helper-btn" id="btnVocalShva">
+                <button type="button" class="helper-btn" id="btnVocalShva" onclick="insertAtCursor('\u05bd', 'diacritics')">
                   <i class="fas fa-circle"></i>
                   Press for Vocal Shva
                 </button>
@@ -208,6 +208,86 @@
                     style="display: none"
                   ></div>
                 </div>
+              </div>
+              <div class="helper-info helper-phonemes">
+                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('\u02c8', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  Stress ˈ
+                </button>
+
+                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('χ', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  χ
+                </button>
+                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('ʃ', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  ʃ
+                </button>
+
+                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('ʔ', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  ʔ
+                </button>
+
+                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('χ', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  χ
+                </button>
+
+                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('ʁ', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  ʁ
+                </button>
+
+                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('ʒ', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  ʒ
+                </button>
+
+                                <button
+                  type="button"
+                  class="helper-btn"
+                  id="btnStress"
+                  onclick="insertAtCursor('ɡ', 'phonemes')"
+                >
+                  <i class="fas fa-dot-circle"></i>
+                  ɡ
+                </button>
               </div>
               <div
                 id="phonemes-status"

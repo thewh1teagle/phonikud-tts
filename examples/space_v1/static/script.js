@@ -51,8 +51,14 @@ function generate(mode) {
         .then((res) => res.json())
         .then((data) => {
             // Update all fields with returned data
-            document.getElementById("diacritics-input").value = data.diacritics || "";
-            document.getElementById("phonemes-input").value = data.phonemes || "";
+            if (data.diacritics) {
+                document.getElementById("diacritics-input").value = data.diacritics || "";
+            }
+            if (data.phonemes) {
+                document.getElementById("phonemes-input").value = data.phonemes || "";
+            }
+            
+            
 
             // Set up audio
             audio.src = data.audio;
@@ -79,18 +85,22 @@ function generate(mode) {
 }
 
 const diacriticsInput = document.getElementById('diacritics-input');
+const phonemesInput = document.getElementById('phonemes-input');
+const textInput = document.getElementById('text-input');
 const btnHatama = document.getElementById('btnHatama');
 const btnVocalShva = document.getElementById('btnVocalShva');
+const btnStress = document.getElementById('btnStress');
 
-function insertAtCursor(charToInsert) {
-    const start = diacriticsInput.selectionStart;
-    const end = diacriticsInput.selectionEnd;
-    const text = diacriticsInput.value;
+function insertAtCursor(charToInsert, inputName) {
+    const inputElement = inputName == 'diacritics' ? diacriticsInput : inputName == 'text' ? textInput : phonemesInput
+    const start = inputElement.selectionStart;
+    const end = inputElement.selectionEnd;
+    const text = inputElement.value;
 
-    diacriticsInput.value = text.slice(0, start) + charToInsert + text.slice(end);
+    inputElement.value = text.slice(0, start) + charToInsert + text.slice(end);
     // Move cursor after inserted char
-    diacriticsInput.selectionStart = diacriticsInput.selectionEnd = start + charToInsert.length;
-    diacriticsInput.focus();
+    inputElement.selectionStart = inputElement.selectionEnd = start + charToInsert.length;
+    inputElement.focus();
 }
 
 btnHatama.addEventListener('click', () => {
@@ -100,6 +110,10 @@ btnHatama.addEventListener('click', () => {
 btnVocalShva.addEventListener('click', () => {
     insertAtCursor('\u05bd'); // Hebrew Vocal Shva
 });
+
+// btnStress.addEventListener('click', () => {
+//     insertAtCursor('\u05bd');
+// })
 
 // Set initial example text
 window.addEventListener('load', () => {

@@ -34,9 +34,9 @@ def generate():
         with_diacritics = text
         phonemes = phonemize(with_diacritics)
     else:
-        with_diacritics = ""
+        with_diacritics = None
 
-    samples, sample_rate = piper.create(phonemes, is_phonemes=True)
+    samples, sample_rate = piper.create(phonemes, is_phonemes=True, length_scale=1.25)
     buffer = io.BytesIO()
     sf.write(buffer, samples, sample_rate, format="WAV")
     buffer.seek(0)
