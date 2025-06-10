@@ -137,3 +137,24 @@ document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
         });
     });
 });
+
+
+function hasDiacritics(text) {
+    // Check for Hebrew diacritics (nikud) in the range \u05b0 to \u05c7
+    return /[\u05b0-\u05c7]/.test(text);
+}
+
+textInput.addEventListener('keydown', (event) => {
+    // Get the character that would be inserted
+    const charToInsert = event.key;
+
+    // Check if the character is a Hebrew diacritic
+    // Note: event.key might not always give you the exact character for combining diacritics easily
+    // This regex check is more reliable for the *content* of the text, not individual key presses
+    if (charToInsert.match(/[\u05b0-\u05c7]/)) {
+        event.preventDefault(); // This stops the character from being typed
+        alert('Diacritics detected. These characters are not allowed in this input. Please switch to the Diacritics tab to input text with diacritics.');
+        // You might want to also focus on the input if the alert takes focus away
+        textInput.focus();
+    }
+});

@@ -3,3 +3,4 @@ __pycache__/
 *.json
 *.wav
 .gradio
+.DS_Store
