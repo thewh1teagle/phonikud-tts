@@ -15,7 +15,7 @@ import io
 
 app = Flask(__name__)
 phonikud = Phonikud("phonikud-1.0.int8.onnx")
-piper = Piper("model.onnx", "model.config.json")
+piper = Piper("/Volumes/Internal/audio/phonikud-tts/model.onnx", "model.config.json")
 
 @app.route("/")
 def index():
@@ -37,6 +37,12 @@ def generate():
         with_diacritics = None
 
     samples, sample_rate = piper.create(phonemes, is_phonemes=True, length_scale=1.25)
+    
+    # Volume up
+    volume_factor = 2
+    samples = samples * volume_factor
+    samples = samples.clip(-1.0, 1.0)  # Ensure values are still in valid [-1, 1] range
+    
     buffer = io.BytesIO()
     sf.write(buffer, samples, sample_rate, format="WAV")
     buffer.seek(0)
