@@ -476,20 +476,20 @@ dependencies = [
 
 [[package]]
 name = "phonikud-onnx"
-version = "1.0.1"
+version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "onnxruntime" },
     { name = "tokenizers" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/16/2c/e8edfb8174154ae0c0ae888a83fda4b00d158fa353419c2d51ff2e1c46b5/phonikud_onnx-1.0.1.tar.gz", hash = "sha256:93c67e5be45c2e242ecb0f5558c5a678da1d2cb58ee18ffa553d25589b57897b", size = 5363 }
+sdist = { url = "https://files.pythonhosted.org/packages/16/82/844be505d5eba4575ac3a1fb0f4504bf4c2e305a0886acc7688ac0b33b2d/phonikud_onnx-1.0.2.tar.gz", hash = "sha256:0d29f555c62223871949dc45b073e0d4b4298d403d43e5cae1cbe1f46bf2cc08", size = 4178568 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f9/ad/b7cf05ddc9847144dd7b9b3041d4ccc00151930ff7fb2ed8e05c93020b45/phonikud_onnx-1.0.1-py3-none-any.whl", hash = "sha256:039ed80761bddc8a02f48227b4a8e98ab5d067f3dbda1b83554454800bf9f3bd", size = 4408 },
+    { url = "https://files.pythonhosted.org/packages/1d/de/e1663c62659edafaa382c736009fdce4b27567842233358ef6604678e9ba/phonikud_onnx-1.0.2-py3-none-any.whl", hash = "sha256:861ba7a0e3e61335790d5de15550575164ae7d6d9400d5ed4146568de8d30dd1", size = 4464 },
 ]
 
 [[package]]
 name = "phonikud-tts"
-version = "0.1.0"
+version = "0.1.2"
 source = { editable = "." }
 dependencies = [
     { name = "phonikud" },
@@ -502,7 +502,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "phonikud", git = "https://github.com/thewh1teagle/phonikud" },
-    { name = "phonikud-onnx", specifier = ">=1.0.1" },
+    { name = "phonikud-onnx", specifier = ">=1.0.2" },
     { name = "piper-onnx", specifier = ">=1.0.5" },
     { name = "sounddevice", specifier = ">=0.5.2" },
     { name = "soundfile", specifier = ">=0.13.1" },
