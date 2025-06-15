@@ -36,7 +36,7 @@ def generate():
     else:
         with_diacritics = None
 
-    samples, sample_rate = piper.create(phonemes, is_phonemes=True, length_scale=1.25)
+    samples, sample_rate = piper.create(phonemes, is_phonemes=True, length_scale=1.20, noise_scale=0.640, noise_w=1.0) # noise_w=0.8, noise_scale=0.667
     
     # Volume up
     volume_factor = 2
