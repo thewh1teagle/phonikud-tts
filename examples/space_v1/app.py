@@ -12,6 +12,7 @@ from phonikud_tts import Phonikud, phonemize, Piper
 import soundfile as sf
 import base64
 import io
+import argparse
 
 app = Flask(__name__)
 phonikud = Phonikud("phonikud-1.0.int8.onnx")
@@ -60,4 +61,8 @@ def serve_audio(filename):
     return app.send_static_file(filename)
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=7860)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--host', default='0.0.0.0')
+    parser.add_argument('--port', type=int, default=7860)
+    args = parser.parse_args()
+    app.run(debug=True, host=args.host, port=args.port)
