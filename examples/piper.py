@@ -18,6 +18,6 @@ with_diacritics = phonikud.add_diacritics(text)
 phonemes = phonemize(with_diacritics)
 
 # Create audio
-samples, sample_rate = piper.create(phonemes)
+samples, sample_rate = piper.create(phonemes, is_phonemes=True)
 sf.write('audio.wav', samples, sample_rate)
 print("Created audio.wav")
