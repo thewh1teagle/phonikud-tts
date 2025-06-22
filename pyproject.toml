@@ -9,7 +9,7 @@ authors = [
 requires-python = ">=3.11"
 dependencies = [
     "phonikud",
-    "phonikud-onnx>=1.0.3",
+    "phonikud-onnx",
     "piper-onnx>=1.0.5",
     "sounddevice>=0.5.2",
     "soundfile>=0.13.1",
