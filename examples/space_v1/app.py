@@ -18,9 +18,19 @@ app = Flask(__name__)
 phonikud = Phonikud("phonikud-1.0.int8.onnx")
 piper = Piper("model.onnx", "model.config.json")
 
+# Get commit information safely
+def get_phonikud_commit():
+    try:
+        metadata = phonikud.get_metadata()
+        return metadata.get("commit", None)
+    except Exception:
+        return None
+
+phonikud_commit = get_phonikud_commit()
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", phonikud_commit=phonikud_commit)
 
 @app.route("/generate", methods=["POST"])
 def generate():
