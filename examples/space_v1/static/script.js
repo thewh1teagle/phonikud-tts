@@ -119,7 +119,7 @@ btnVocalShva.addEventListener('click', () => {
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById("text-input").value =
-            "מה שבהגדרה משאיר את הכלכלה ההונגרית מאחור, אפילו ביחס למדינות כמו פולין.";
+            "הכוח לשנות מתחיל ברגע שבו אתה מאמין שזה אפשרי!";
         document.getElementById('diacritics-input').value = "מָה שֶׁבַּ|הַגְדָּרָה מַשְׁאִיר אֶת הַ|כַּלְכָּלָה הַ|הוּנְגָּרִית מֵאָחוֹר, אֲפִ֫ילּוּ בְּֽ|יַ֫חַס לִ|מְדִינוֹת כְּמוֹ פּוֹלִין."
         document.getElementById('phonemes-input').value = "mˈa ʃebahaɡdaʁˈa maʃʔˈiʁ ʔˈet hakalkalˈa hahunɡaʁˈit meʔaχˈoʁ, ʔafˈilu bejˈaχas limdinˈot kmˈo polˈin."
     }, 500);
