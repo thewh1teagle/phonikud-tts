@@ -120,8 +120,8 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById("text-input").value =
             "הכוח לשנות מתחיל ברגע שבו אתה מאמין שזה אפשרי!";
-        document.getElementById('diacritics-input').value = "מָה שֶׁבַּ|הַגְדָּרָה מַשְׁאִיר אֶת הַ|כַּלְכָּלָה הַ|הוּנְגָּרִית מֵאָחוֹר, אֲפִ֫ילּוּ בְּֽ|יַ֫חַס לִ|מְדִינוֹת כְּמוֹ פּוֹלִין."
-        document.getElementById('phonemes-input').value = "mˈa ʃebahaɡdaʁˈa maʃʔˈiʁ ʔˈet hakalkalˈa hahunɡaʁˈit meʔaχˈoʁ, ʔafˈilu bejˈaχas limdinˈot kmˈo polˈin."
+        document.getElementById('diacritics-input').value = "הַ|כּ֫וֹחַ לְֽשַׁנּוֹת מַתְחִיל בָּ|רֶ֫גַע שֶׁ|בּוֹ אַתָּה מַאֲמִין שֶׁ|זֶּה אֶפְשָׁרִי!"
+        document.getElementById('phonemes-input').value = "hakˈoaχ leʃanˈot matχˈil baʁˈeɡa ʃebˈo ʔatˈa maʔamˈin ʃezˈe ʔefʃaʁˈi!"
     }, 500);
 });
 
