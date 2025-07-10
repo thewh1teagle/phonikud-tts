@@ -52,7 +52,7 @@ See [examples](examples)
 
 ## License
 
-Non commercial (cc-nc)
+Non commercial. See [LICENSE](LICENSE)
 
 ## Play 🕹️
 
