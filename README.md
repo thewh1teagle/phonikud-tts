@@ -50,6 +50,10 @@ python main.py
 
 See [examples](examples)
 
+## License
+
+Non commercial (cc-nc)
+
 ## Play 🕹️
 
 See [TTS with Hebrew Space](https://huggingface.co/spaces/thewh1teagle/phonikud-tts)
