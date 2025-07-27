@@ -5,3 +5,4 @@ __pycache__/
 .gradio
 .DS_Store
 *.pth
+*.yaml
