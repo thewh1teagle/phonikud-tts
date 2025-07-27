@@ -15,9 +15,16 @@ dependencies = [
     "soundfile>=0.13.1",
 ]
 
+[project.optional-dependencies]
+styletts2 = []
+stts2-light = [
+    "stts2-light",
+]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv.sources]
 phonikud = { git = "https://github.com/thewh1teagle/phonikud" }
+stts2-light = { git = "https://github.com/thewh1teagle/StyleTTS2-lite.git", rev = "hebrew2" }
