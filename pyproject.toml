@@ -16,7 +16,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-styletts2 = []
+styletts2 = [
+    "torch>=2.7.1",
+]
 stts2-light = [
     "stts2-light",
 ]

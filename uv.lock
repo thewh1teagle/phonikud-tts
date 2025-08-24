@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.13'",
@@ -1322,6 +1322,9 @@ dependencies = [
 stts2-light = [
     { name = "stts2-light" },
 ]
+styletts2 = [
+    { name = "torch" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -1331,6 +1334,7 @@ requires-dist = [
     { name = "sounddevice", specifier = ">=0.5.2" },
     { name = "soundfile", specifier = ">=0.13.1" },
     { name = "stts2-light", marker = "extra == 'stts2-light'", git = "https://github.com/thewh1teagle/StyleTTS2-lite.git?rev=hebrew2" },
+    { name = "torch", marker = "extra == 'styletts2'", specifier = ">=2.7.1" },
 ]
 provides-extras = ["styletts2", "stts2-light"]
 

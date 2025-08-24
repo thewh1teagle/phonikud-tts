@@ -3,6 +3,7 @@ wget https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0
 wget https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/saspeech_automatic_stts2-light_epoch_00010.pth
 wget https://raw.githubusercontent.com/thewh1teagle/StyleTTS2-lite/refs/heads/hebrew2/Configs/config.yaml
 wget https://github.com/thewh1teagle/StyleTTS2-lite/raw/refs/heads/hebrew2/Demo/Audio/10_michael.wav
+git clone https://github.com/thewh1teagle/StyleTTS2-lite -b hebrew2
 uv run examples/styletts2_light.py
 """
 from phonikud_tts import Phonikud, phonemize, StyleTTS2Light
