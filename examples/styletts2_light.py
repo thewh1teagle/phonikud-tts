@@ -4,9 +4,11 @@ wget https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/s
 wget https://raw.githubusercontent.com/thewh1teagle/StyleTTS2-lite/refs/heads/hebrew2/Configs/config.yaml
 wget https://github.com/thewh1teagle/StyleTTS2-lite/raw/refs/heads/hebrew2/Demo/Audio/10_michael.wav
 git clone https://github.com/thewh1teagle/StyleTTS2-lite -b hebrew2
-uv run examples/styletts2_light.py
+
+PYTHONPATH=./StyleTTS2-lite uv run --extra styletts2 examples/styletts2_light.py
 """
-from phonikud_tts import Phonikud, phonemize, StyleTTS2Light
+from phonikud_tts import Phonikud, phonemize
+from phonikud_tts.styletts2_light import StyleTTS2Light
 import soundfile as sf
 
 

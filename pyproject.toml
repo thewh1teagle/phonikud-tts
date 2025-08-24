@@ -29,4 +29,9 @@ build-backend = "hatchling.build"
 
 [tool.uv.sources]
 phonikud = { git = "https://github.com/thewh1teagle/phonikud" }
-stts2-light = { git = "https://github.com/thewh1teagle/StyleTTS2-lite.git", rev = "hebrew2" }
+stts2-light = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+    "StyleTTS2-lite",
+]
