@@ -1355,7 +1355,6 @@ dependencies = [
     { name = "piper-onnx" },
     { name = "sounddevice" },
     { name = "soundfile" },
-    { name = "stts2-light" },
 ]
 
 [package.optional-dependencies]
@@ -1373,7 +1372,6 @@ requires-dist = [
     { name = "piper-onnx", specifier = ">=1.0.5" },
     { name = "sounddevice", specifier = ">=0.5.2" },
     { name = "soundfile", specifier = ">=0.13.1" },
-    { name = "stts2-light", editable = "StyleTTS2-lite" },
     { name = "stts2-light", marker = "extra == 'stts2-light'", editable = "StyleTTS2-lite" },
     { name = "torch", marker = "extra == 'styletts2'", specifier = ">=2.7.1" },
 ]

@@ -5,6 +5,7 @@ wget https://raw.githubusercontent.com/thewh1teagle/StyleTTS2-lite/refs/heads/he
 wget https://github.com/thewh1teagle/StyleTTS2-lite/raw/refs/heads/hebrew2/Demo/Audio/10_michael.wav
 git clone https://github.com/thewh1teagle/StyleTTS2-lite -b hebrew2
 
+uv pip install ./StyleTTS2-lite
 PYTHONPATH=./StyleTTS2-lite uv run --extra styletts2 examples/styletts2_light.py
 """
 from phonikud_tts import Phonikud, phonemize
