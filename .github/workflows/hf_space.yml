@@ -24,6 +24,7 @@ jobs:
       - name: Prepare and push to HF
         run: |
 
+          git clone https://github.com/thewh1teagle/StyleTTS2-lite -b hebrew2
           uv sync -U
           uv export --no-hashes --no-emit-project > requirements.txt
           echo "flask>=3.1.1" >> requirements.txt
@@ -46,6 +47,7 @@ jobs:
           git config --global user.email "thewh1teagle"
           git config --global user.name "thewh1teagle"
           git remote add origin https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME
+
           
           wget --progress=bar:force https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx -O phonikud-1.0.int8.onnx
           wget --progress=bar:force https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/shaul_whisper_heb_ipa1.onnx -O model.onnx
