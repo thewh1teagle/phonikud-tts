@@ -1,6 +1,6 @@
 """
 uv sync
-uv pip install Flask
+uv pip install Flask>=3.1.2
 wget https://huggingface.co/thewh1teagle/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx
 wget https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/model.onnx
 wget https://huggingface.co/thewh1teagle/phonikud-tts-checkpoints/resolve/main/model.config.json
