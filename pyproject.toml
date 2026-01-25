@@ -13,14 +13,7 @@ dependencies = [
     "piper-onnx>=1.0.5",
     "sounddevice>=0.5.2",
     "soundfile>=0.13.1",
-]
-
-[project.optional-dependencies]
-styletts2 = [
-    "torch>=2.7.1",
-]
-stts2-light = [
-    "stts2-light",
+    "style-onnx",
 ]
 
 [build-system]
@@ -29,9 +22,4 @@ build-backend = "hatchling.build"
 
 [tool.uv.sources]
 phonikud = { git = "https://github.com/thewh1teagle/phonikud" }
-stts2-light = { workspace = true }
-
-[tool.uv.workspace]
-members = [
-    "StyleTTS2-lite",
-]
+style-onnx = { git = "https://github.com/thewh1teagle/style-onnx" }
