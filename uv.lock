@@ -2455,7 +2455,7 @@ wheels = [
 [[package]]
 name = "style-onnx"
 version = "0.1.0"
-source = { git = "https://github.com/thewh1teagle/style-onnx#69a4be2e5082e4910f5708a46f907af00afa97df" }
+source = { git = "https://github.com/thewh1teagle/style-onnx#756abfe2597266f8435974a6aaab53a7f47192c6" }
 dependencies = [
     { name = "numpy" },
     { name = "onnxruntime" },
