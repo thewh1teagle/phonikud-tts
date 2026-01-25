@@ -22,6 +22,14 @@ See [examples](examples)
 
 In each example you'll find a guide on top of the code to run it.
 
+## GPU Support
+
+To use with GPU, you can initiate the models with `from_session` method and initiate the session with `CUDAExecutionProvider`. Make sure to install the correct onnxruntime package, e.g. `onnxruntime-gpu` for CUDA. validate with 
+
+```console
+uv run python -c "import onnxruntime; print(onnxruntime.get_available_providers())"
+```
+
 ## License
 
 Non commercial. See [LICENSE](LICENSE)
