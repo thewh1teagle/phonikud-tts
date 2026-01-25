@@ -1,7 +1,7 @@
 [project]
 name = "phonikud-tts"
 version = "0.1.3"
-description = "Add your description here"
+description = "Text to speech in Hebrew"
 readme = "README.md"
 authors = [
     { name = "thewh1teagle", email = "61390950+thewh1teagle@users.noreply.github.com" }
