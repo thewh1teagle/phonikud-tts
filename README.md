@@ -6,7 +6,7 @@ Based on [Phonikud](https://github.com/thewh1teagle/phonikud)
 
 # Prerequisites
 
-- [uv](https://docs.astral.sh/uv/)
+- [uv](https://docs.astral.sh/uv/getting-started/installation)
 
 ## Install
 
