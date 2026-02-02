@@ -7,3 +7,5 @@ __pycache__/
 *.pth
 *.yaml
 *.npy
+*.tar.gz
+zipvoice-onnx/

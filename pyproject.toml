@@ -20,6 +20,9 @@ dependencies = [
 chatterbox = [
     "phonikud-chatterbox",
 ]
+zipvoice = [
+    "zipvoice-onnx",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -28,3 +31,4 @@ build-backend = "hatchling.build"
 [tool.uv.sources]
 style-onnx = { git = "https://github.com/thewh1teagle/style-onnx" }
 phonikud-chatterbox = { git = "https://github.com/thewh1teagle/phonikud-chatterbox" }
+zipvoice-onnx = { git = "https://github.com/thewh1teagle/zipvoice-onnx" }
